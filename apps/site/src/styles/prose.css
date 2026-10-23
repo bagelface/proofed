@@ -1,0 +1,48 @@
+.columns {
+  display: grid;
+  gap: 2.5rem 3rem;
+}
+
+.columns h2 {
+  margin-bottom: 1rem;
+}
+
+.ruled {
+  display: grid;
+  gap: 1.75rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ruled li {
+  padding-top: 1rem;
+  border-top: 2px solid var(--ink);
+}
+
+.ruled p {
+  margin-top: 0.5rem;
+}
+
+.band {
+  background: var(--paper-light);
+  border-block: 2px solid var(--ink);
+}
+
+.title-orange {
+  color: var(--orange);
+}
+
+.stack > * + * {
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 56rem) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .ruled.three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

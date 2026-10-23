@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/Base.astro";
+import Credential from "../components/Credential.astro";
+import { href } from "../lib/url";
+---
+<Base title="Sample credential" description="What an employer sees when a candidate shares a Proofed credential.">
+  <section class="section">
+    <div class="wrap demo">
+      <div class="stack">
+        <p class="sample">This is a sample. It isn't a real person's credential.</p>
+        <h1 class="display display-l">Amina shared her work history with you</h1>
+        <p class="lead">These facts were proven from her Bolt account. She chose to keep everything else private.</p>
+        <p>The check confirms the data came from Bolt and hasn't been changed since it was proven.</p>
+        <p><a href={href("/employers")}>How Proofed works for employers</a></p>
+      </div>
+      <Credential detailed animate />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .demo {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sample {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    background: var(--orange-soft);
+    color: var(--orange-deep);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  @media (min-width: 56rem) {
+    .demo {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

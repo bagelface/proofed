@@ -1,0 +1,118 @@
+---
+import Base from "../layouts/Base.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { repoUrl } from "../lib/url";
+
+const steps = [
+  { title: "You log in to the platform", body: "Through Proofed, on your own phone, the way you always do. Your password goes only to the platform." },
+  { title: "An independent party confirms the session", body: "A separate service, called an attestor, confirms the data really came from the platform's site. It never sees your login." },
+  { title: "Your phone builds the proof", body: "It proves only the facts you picked, such as \"over 5,000 trips\", using a zero-knowledge proof." },
+  { title: "You keep the credential", body: "It's stored on your phone in an open standard format, and can also live in an EU Digital Identity Wallet." },
+  { title: "The employer checks it from a link", body: "Their browser checks the proof. They need no account and no special software." },
+];
+const terms = [
+  { term: "Zero-knowledge proof", meaning: "A way to convince someone a statement is true without showing the data behind it." },
+  { term: "zkTLS", meaning: "A technique for proving something about data a website sent you over a secure connection, without the website's help." },
+  { term: "Attestor", meaning: "An independent service that confirms your session with the platform was real." },
+  { term: "Selective disclosure", meaning: "You choose which facts to reveal. Nothing else leaves your phone." },
+];
+---
+<Base title="How it works" description="How Proofed turns platform data into a private, verifiable credential using zkTLS and zero-knowledge proofs.">
+  <PageIntro title="Proof without the paperwork." lead="Proofed uses cryptography to prove facts from websites you already log in to, without revealing anything else." />
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="display display-l title-orange">From login to link</h2>
+      <ol class="flow">
+        {steps.map((step) => (
+          <li>
+            <h3 class="heading">{step.title}</h3>
+            <p>{step.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap columns">
+      <h2 class="display display-l">The words you'll hear</h2>
+      <dl class="terms">
+        {terms.map((t) => (
+          <div>
+            <dt class="heading">{t.term}</dt>
+            <dd>{t.meaning}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap columns">
+      <div class="stack">
+        <h2 class="display display-l">Open by design</h2>
+        <p class="lead">Every part of Proofed is open source, so anyone can check how it handles your data.</p>
+      </div>
+      <ul class="ruled">
+        <li>
+          <h3 class="heading">Open standards</h3>
+          <p>Credentials follow the W3C Verifiable Credentials standard, so they work beyond Proofed.</p>
+        </li>
+        <li>
+          <h3 class="heading">No single gatekeeper</h3>
+          <p>Proofed can work with more than one attestor network, so no one company controls whether your proofs are trusted.</p>
+        </li>
+        <li>
+          <h3 class="heading">Read the code</h3>
+          <p>The source and our <a href={`${repoUrl}/blob/main/docs/threat-model.md`}>threat model</a> are on <a href={repoUrl}>GitHub</a>.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .flow {
+    display: grid;
+    gap: 0;
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: flow;
+  }
+
+  .flow li {
+    counter-increment: flow;
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    column-gap: 1.25rem;
+    padding-block: 1.5rem;
+    border-top: 2px solid var(--ink);
+  }
+
+  .flow li::before {
+    content: counter(flow);
+    grid-row: span 2;
+    font-size: 3rem;
+    font-weight: 900;
+    font-stretch: 112%;
+    line-height: 1;
+    color: var(--orange);
+  }
+
+  .flow p {
+    margin-top: 0.5rem;
+  }
+
+  .terms {
+    display: grid;
+    gap: 1.75rem;
+    margin: 0;
+  }
+
+  .terms dd {
+    margin: 0.4rem 0 0;
+    max-width: var(--measure);
+  }
+</style>
