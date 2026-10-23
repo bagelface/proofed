@@ -1,0 +1,42 @@
+---
+const steps = [
+  { title: "Log in the normal way", body: "Connect Bolt, Uber, Upwork or GitHub. We never see your password." },
+  { title: "Pick what to prove", body: "\"Active since 2023\", \"over 5,000 trips\". Everything else stays private." },
+  { title: "Send a link", body: "Employers see the claims, where they came from, and a check that they are genuine." },
+];
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proofed — your work history, verified</title>
+    <meta name="description" content="Turn your platform work history into a private, verifiable credential employers anywhere can trust." />
+  </head>
+  <body>
+    <header>
+      <h1>I'm proofed.</h1>
+      <p>Your work history, verified and private. Prove what you've done on the platforms employers already know, and reveal nothing else.</p>
+    </header>
+    <section aria-labelledby="how">
+      <h2 id="how">How it works</h2>
+      <ol>
+        {steps.map((s) => (
+          <li>
+            <h3>{s.title}</h3>
+            <p>{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <section aria-labelledby="who">
+      <h2 id="who">Who it's for</h2>
+      <p>People whose experience is hard to check across borders, and the employers, recruiters and NGOs who want to hire them.</p>
+    </section>
+  </body>
+  <style>
+    :root { --crust: #8a4b1f; --dough: #f6e7cf; --flour: #fffaf2; --ink: #2a1d12; }
+    body { margin: 0 auto; max-width: 44rem; padding: 2rem 1rem; font-family: system-ui, sans-serif; background: var(--flour); color: var(--ink); line-height: 1.5; }
+    h1 { color: var(--crust); font-size: 3rem; margin-bottom: 0.5rem; }
+    ol { padding-left: 1.25rem; }
+  </style>
+</html>

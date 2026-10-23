@@ -1,0 +1,7 @@
+{
+  "name": "proofed-share",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "r2_buckets": [{ "binding": "PRESENTATIONS", "bucket_name": "proofed-presentations" }],
+  "observability": { "enabled": true }
+}

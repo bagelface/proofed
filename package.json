@@ -1,0 +1,15 @@
+{
+  "name": "proofed",
+  "private": true,
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@9.9.0",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.6.3"
+  }
+}
