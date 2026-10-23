@@ -1,0 +1,72 @@
+---
+import Base from "../layouts/Base.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SignupForm from "../components/SignupForm.astro";
+import Credential from "../components/Credential.astro";
+import { href } from "../lib/url";
+---
+<Base title="For employers and NGOs" description="Check a candidate's platform work history from a link. No account, no software, nothing to install.">
+  <PageIntro title="Hire on evidence, not guesswork." lead="A candidate sends you a link. You see the facts they've proven, the platform they came from, and whether the proof is genuine.">
+    <div class="actions">
+      <a class="button" href={href("/demo")}>See a sample credential</a>
+      <a class="button button-quiet" href="#pilot">Run a pilot with us</a>
+    </div>
+  </PageIntro>
+
+  <section class="section">
+    <div class="wrap columns">
+      <div class="stack">
+        <h2 class="display display-l title-orange">What you'll see</h2>
+        <p class="lead">Each fact the candidate chose to share, where it came from, when it was proven and when it expires.</p>
+        <p>The check runs in your browser. There's nothing to sign up for and no crypto knowledge needed.</p>
+      </div>
+      <Credential detailed />
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap">
+      <h2 class="display display-l">What a proof tells you</h2>
+      <ul class="ruled three">
+        <li>
+          <h3 class="heading">The data is real</h3>
+          <p>It came from the platform's own site, confirmed by an independent party at the time it was captured.</p>
+        </li>
+        <li>
+          <h3 class="heading">It hasn't been edited</h3>
+          <p>Any change to a proven fact makes the check fail. A screenshot can't do that.</p>
+        </li>
+        <li>
+          <h3 class="heading">What it doesn't cover</h3>
+          <p>A proof shows who logged in to the account. It can't show that nobody else ever used it.</p>
+        </li>
+      </ul>
+      <p class="note">You only see what the candidate chose to share, and there's no way to ask for more through Proofed.</p>
+    </div>
+  </section>
+
+  <section class="section" id="pilot" aria-labelledby="pilot-title">
+    <div class="wrap columns">
+      <div class="stack">
+        <h2 id="pilot-title" class="display display-l">Run a pilot with us</h2>
+        <p class="lead">We're looking for one recruiter or newcomer-employment organisation to try Proofed with real candidates.</p>
+        <p>You'd help candidates create credentials, use them in hiring, and tell us what works.</p>
+      </div>
+      <SignupForm
+        id="pilot"
+        roles={[
+          { value: "employer", label: "An employer or recruiter" },
+          { value: "ngo", label: "An NGO helping newcomers find work" },
+        ]}
+        submitLabel="Get in touch"
+      />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .note {
+    margin-top: 2.5rem;
+    font-weight: 600;
+  }
+</style>

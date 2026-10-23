@@ -1,0 +1,75 @@
+---
+import Base from "../layouts/Base.astro";
+import PageIntro from "../components/PageIntro.astro";
+import SignupForm from "../components/SignupForm.astro";
+import { href, stacksUrl } from "../lib/url";
+
+const platforms = [
+  { name: "Bolt and Uber", proves: "How long you've driven, how many trips you've completed, and your rating if you choose." },
+  { name: "Upwork", proves: "Jobs completed, time on the platform and client feedback scores." },
+  { name: "GitHub", proves: "How long you've contributed and how much, without exposing your private repositories." },
+  { name: "Airbnb", proves: "Your record as a guest or host, such as stays completed and reviews." },
+  { name: "Stacks savings circles", proves: "That you completed a savings circle and paid on time, without revealing your wallet." },
+];
+---
+<Base title="For job seekers" description="Prove your work history from Bolt, Uber, Upwork, GitHub and more to employers in a new country, and keep everything else private.">
+  <PageIntro title="Bring your track record with you." lead="Years of work on Bolt, Uber, Upwork or GitHub count. Proofed turns that history into proof an employer anywhere can check.">
+    <div class="actions"><a class="button" href="#waitlist">Join the waitlist</a></div>
+  </PageIntro>
+
+  <section class="section">
+    <div class="wrap">
+      <h2 class="display display-l title-orange">What you can prove</h2>
+      <ul class="ruled three">
+        {platforms.map((p) => (
+          <li>
+            <h3 class="heading">{p.name}</h3>
+            <p>{p.proves}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="note">These are the first platforms we're building for. <a href={stacksUrl}>Stacks</a> is a savings circle tool made by our own cooperative.</p>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap columns">
+      <div class="stack">
+        <h2 class="display display-l">You decide what's shared</h2>
+        <p class="lead">Before anything is made, Proofed shows you exactly what the employer will see and what stays hidden.</p>
+      </div>
+      <ul class="ruled">
+        <li>
+          <h3 class="heading">Show a fact, not the number</h3>
+          <p>Prove "over 5,000 trips" instead of your exact count. Prove "rating above 4.8" or leave your rating out completely.</p>
+        </li>
+        <li>
+          <h3 class="heading">No password sharing</h3>
+          <p>You log in to the platform yourself, the normal way. Proofed never sees your password.</p>
+        </li>
+        <li>
+          <h3 class="heading">Stop sharing at any time</h3>
+          <p>Every link has an end date. Switch a link off whenever you want, and update a proof in one step when it runs out.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="waitlist" aria-labelledby="waitlist-title">
+    <div class="wrap columns">
+      <div class="stack">
+        <h2 id="waitlist-title" class="display display-l">Join the waitlist</h2>
+        <p class="lead">We'll email you when Proofed is ready to use. Nothing else.</p>
+        <p><a href={href("/privacy")}>How we handle your email address</a></p>
+      </div>
+      <SignupForm id="waitlist" roles={[{ value: "holder", label: "Looking for work" }]} submitLabel="Join the waitlist" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .note {
+    margin-top: 2.5rem;
+    color: var(--muted);
+  }
+</style>

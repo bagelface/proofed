@@ -1,42 +1,277 @@
 ---
+import Base from "../layouts/Base.astro";
+import Credential from "../components/Credential.astro";
+import { href } from "../lib/url";
+
 const steps = [
-  { title: "Log in the normal way", body: "Connect Bolt, Uber, Upwork or GitHub. We never see your password." },
-  { title: "Pick what to prove", body: "\"Active since 2023\", \"over 5,000 trips\". Everything else stays private." },
-  { title: "Send a link", body: "Employers see the claims, where they came from, and a check that they are genuine." },
+  { title: "She logs in to Bolt through Proofed", body: "The normal Bolt login, on her own phone. Proofed never sees her password." },
+  { title: "She picks the facts to prove", body: "Active since 2023. Over 5,000 completed trips. Rating above 4.8." },
+  { title: "Everything else stays with her", body: "Her name, trip locations, earnings and passengers are never shared." },
+  { title: "She sends the employer a link", body: "They see each fact, the platform it came from, and a check that it is genuine." },
 ];
+const platforms = ["Bolt", "Uber", "Upwork", "GitHub", "Airbnb", "Stacks savings circles"];
 ---
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Proofed — your work history, verified</title>
-    <meta name="description" content="Turn your platform work history into a private, verifiable credential employers anywhere can trust." />
-  </head>
-  <body>
-    <header>
-      <h1>I'm proofed.</h1>
-      <p>Your work history, verified and private. Prove what you've done on the platforms employers already know, and reveal nothing else.</p>
-    </header>
-    <section aria-labelledby="how">
-      <h2 id="how">How it works</h2>
-      <ol>
-        {steps.map((s) => (
+<Base title="Proofed" description="Turn your platform work history into a private, verifiable credential that employers anywhere can check from a link." tone="dark">
+  <section class="hero dark">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1 class="display display-xl">Your work history, proofed.</h1>
+        <p class="lead hero-lead">Prove what you've done on Bolt, Uber, Upwork or GitHub to an employer in another country. Share only the facts you choose.</p>
+        <div class="actions">
+          <a class="button" href={href("/job-seekers#waitlist")}>Join the waitlist</a>
+          <a class="button button-quiet" href={href("/employers")}>I'm hiring</a>
+        </div>
+        <p class="hero-note">Proofed is in development. Join the waitlist to hear when it opens.</p>
+      </div>
+      <div class="hero-card">
+        <Credential animate />
+      </div>
+    </div>
+  </section>
+
+  <section class="section problem">
+    <div class="wrap problem-grid">
+      <h2 class="display display-l problem-title">Experience shouldn't reset at the border.</h2>
+      <div>
+        <p class="lead">A driver in Lagos with 4,000 trips and a 4.9 rating has a real track record. An employer in Berlin can't call a Nigerian reference or judge a local company they've never heard of.</p>
+        <p>So skilled, reliable people start from zero. The record already exists on platforms employers everywhere recognise. Today the only ways to share it are screenshots, which are easy to fake, or handing over your whole account.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section story" aria-labelledby="story-title">
+    <div class="wrap">
+      <h2 id="story-title" class="display display-l">How Amina gets proofed</h2>
+      <p class="lead story-intro">Amina drove for Bolt in Nairobi for three years. Now she's applying for a logistics job in the Netherlands.</p>
+      <ol class="steps">
+        {steps.map((step) => (
           <li>
-            <h3>{s.title}</h3>
-            <p>{s.body}</p>
+            <h3 class="heading">{step.title}</h3>
+            <p>{step.body}</p>
           </li>
         ))}
       </ol>
-    </section>
-    <section aria-labelledby="who">
-      <h2 id="who">Who it's for</h2>
-      <p>People whose experience is hard to check across borders, and the employers, recruiters and NGOs who want to hire them.</p>
-    </section>
-  </body>
-  <style>
-    :root { --crust: #8a4b1f; --dough: #f6e7cf; --flour: #fffaf2; --ink: #2a1d12; }
-    body { margin: 0 auto; max-width: 44rem; padding: 2rem 1rem; font-family: system-ui, sans-serif; background: var(--flour); color: var(--ink); line-height: 1.5; }
-    h1 { color: var(--crust); font-size: 3rem; margin-bottom: 0.5rem; }
-    ol { padding-left: 1.25rem; }
-  </style>
-</html>
+      <p class="story-outro">The employer gets evidence they can trust. Amina keeps control of what she shares.</p>
+    </div>
+  </section>
+
+  <section class="section platforms" aria-labelledby="platforms-title">
+    <div class="wrap">
+      <h2 id="platforms-title" class="heading">We're starting with platforms employers already know</h2>
+      <ul class="platform-list">
+        {platforms.map((name) => <li class="display">{name}</li>)}
+      </ul>
+      <p>An employer may not know a company in Accra. They know what three years and 5,000 trips on Bolt means.</p>
+    </div>
+  </section>
+
+  <section class="section promise dark" aria-labelledby="promise-title">
+    <div class="wrap">
+      <h2 id="promise-title" class="display display-l">Your data stays yours.</h2>
+      <ul class="promises">
+        <li>
+          <h3 class="heading">Made on your phone</h3>
+          <p>Proofs are built on your device. Your platform data never reaches our servers.</p>
+        </li>
+        <li>
+          <h3 class="heading">You choose every fact</h3>
+          <p>Prove how long and how much you've worked without showing your rating, your name or your earnings.</p>
+        </li>
+        <li>
+          <h3 class="heading">Links you control</h3>
+          <p>Every link expires, and you can switch it off at any time.</p>
+        </li>
+      </ul>
+      <div class="actions">
+        <a class="button" href={href("/how-it-works")}>See how it works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section audiences" aria-label="Who Proofed is for">
+    <div class="wrap audience-grid">
+      <article>
+        <h2 class="display display-l">For job seekers</h2>
+        <p class="lead">For people whose experience is hard to check in a new country: immigrants, refugees, returning citizens and anyone with platform or informal work behind them.</p>
+        <div class="actions"><a class="button" href={href("/job-seekers")}>Get proofed</a></div>
+      </article>
+      <article>
+        <h2 class="display display-l">For employers and NGOs</h2>
+        <p class="lead">Check a candidate's work history from a link. No account, no software, nothing to install.</p>
+        <div class="actions"><a class="button button-quiet" href={href("/employers")}>Verify a candidate</a></div>
+      </article>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-block: clamp(2.5rem, 6vw, 5rem) 0;
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .hero-copy {
+    padding-bottom: 1rem;
+  }
+
+  .hero-lead {
+    margin-top: 1.75rem;
+    max-width: 30rem;
+  }
+
+  .hero-note {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    color: var(--paper-deep);
+  }
+
+  .hero-card {
+    max-width: 28rem;
+    margin-bottom: -4rem;
+  }
+
+  .problem {
+    padding-top: clamp(7rem, 12vw, 10rem);
+  }
+
+  .problem-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .problem-title {
+    color: var(--orange);
+  }
+
+  .story {
+    background: var(--paper-light);
+    border-block: 2px solid var(--ink);
+  }
+
+  .story-intro {
+    margin-top: 1.5rem;
+  }
+
+  .steps {
+    display: grid;
+    gap: 2.5rem 2rem;
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps li {
+    counter-increment: step;
+    padding-top: 1rem;
+    border-top: 4px solid var(--ink);
+  }
+
+  .steps li::before {
+    content: counter(step);
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-stretch: 112%;
+    line-height: 1;
+    color: var(--orange);
+  }
+
+  .steps p {
+    margin-top: 0.6rem;
+  }
+
+  .story-outro {
+    margin-top: 3rem;
+    font-size: var(--step-1);
+    font-weight: 700;
+  }
+
+  .platform-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin: 1.75rem 0 2rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .platform-list li {
+    font-size: var(--step-3);
+    color: var(--brown);
+  }
+
+  .platform-list li:last-child {
+    color: var(--orange-deep);
+  }
+
+  .promises {
+    display: grid;
+    gap: 2.5rem;
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .promises li {
+    padding-left: 1.25rem;
+    border-left: 4px solid var(--orange);
+  }
+
+  .promises p {
+    margin-top: 0.6rem;
+    color: var(--paper-deep);
+  }
+
+  .audience-grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .audience-grid .lead {
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 56rem) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      align-items: end;
+    }
+
+    .hero-copy .display-xl {
+      font-size: clamp(3rem, 7.4vw, 6.75rem);
+    }
+
+    .hero-copy {
+      padding-bottom: 5rem;
+    }
+
+    .hero-card {
+      justify-self: end;
+      width: 100%;
+      margin-bottom: -6rem;
+    }
+
+    .problem-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .promises {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .audience-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

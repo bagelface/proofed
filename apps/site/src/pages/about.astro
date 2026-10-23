@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { breadUrl, stacksUrl, repoUrl } from "../lib/url";
+---
+<Base title="About" description="Proofed is open-source software built by members of Bread Cooperative.">
+  <PageIntro title="Built by a worker cooperative." lead="Proofed is made by members of Bread Cooperative, a worker collective building financial tools that put working people first." />
+
+  <section class="section">
+    <div class="wrap columns">
+      <h2 class="display display-l title-orange">Why "Proofed"</h2>
+      <div class="stack">
+        <p class="lead">Before bread goes in the oven, bakers leave the dough to proof: the resting stage where the yeast does its work and the dough rises.</p>
+        <p>Proofed does the same for your work history. It takes experience you already have and turns it into proof that lifts your application.</p>
+        <p>"Proof" is also the technology underneath: zero-knowledge proofs, which show a fact is true without revealing the data behind it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="wrap columns">
+      <h2 class="display display-l">What we stand for</h2>
+      <ul class="ruled">
+        <li>
+          <h3 class="heading">People first</h3>
+          <p>The biggest risk is harm to the people Proofed serves. Minimal disclosure is the default, and we never build a central database of anyone's data.</p>
+        </li>
+        <li>
+          <h3 class="heading">Open source</h3>
+          <p>The code is public under the Apache 2.0 licence on <a href={repoUrl}>GitHub</a>.</p>
+        </li>
+        <li>
+          <h3 class="heading">Honest about our tools</h3>
+          <p><a href={stacksUrl}>Stacks</a>, one of the first sources Proofed supports, is a savings circle tool made by our own cooperative.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="lead">Find out more about the cooperative at <a href={breadUrl}>bread.coop</a>.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,96 @@
+---
+import { formsEndpoint, repoUrl } from "../lib/url";
+
+interface Props {
+  id: string;
+  roles: { value: string; label: string }[];
+  submitLabel: string;
+}
+
+const { id, roles, submitLabel } = Astro.props;
+---
+{formsEndpoint ? (
+  <form class="signup" action={formsEndpoint} method="post">
+    <div class="field">
+      <label for={`${id}-email`}>Email address</label>
+      <input id={`${id}-email`} name="email" type="email" autocomplete="email" required />
+    </div>
+    {roles.length > 1 ? (
+      <div class="field">
+        <label for={`${id}-role`}>I am</label>
+        <select id={`${id}-role`} name="role" required>
+          {roles.map((role) => <option value={role.value}>{role.label}</option>)}
+        </select>
+      </div>
+    ) : (
+      <input type="hidden" name="role" value={roles[0].value} />
+    )}
+    <div class="consent">
+      <input id={`${id}-consent`} name="consent" type="checkbox" value="yes" required />
+      <label for={`${id}-consent`}>Email me about Proofed. We keep only your email address and role, and delete them when you ask.</label>
+    </div>
+    <button class="button" type="submit">{submitLabel}</button>
+  </form>
+) : (
+  <p class="signup-closed">
+    Sign-up opens soon. Until then, follow progress on <a href={repoUrl}>GitHub</a>.
+  </p>
+)}
+
+<style>
+  .signup {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 30rem;
+  }
+
+  .field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  input[type="email"],
+  select {
+    width: 100%;
+    padding: 0.75rem 0.85rem;
+    border: 2px solid var(--ink);
+    border-radius: 0;
+    background: var(--paper-light);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  .consent {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  .consent input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+    accent-color: var(--orange);
+  }
+
+  .consent label {
+    font-weight: 400;
+  }
+
+  .signup .button {
+    justify-self: start;
+  }
+
+  .signup-closed {
+    align-self: start;
+    padding: 1rem 1.25rem;
+    border: 2px solid currentColor;
+    font-weight: 600;
+  }
+</style>
